@@ -6,11 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-	"os/signal"
 	"strings"
 	"sync"
-	"syscall"
 	"time"
 )
 
@@ -107,10 +104,10 @@ func (e *executor) Run() (err error) {
 	// 监听端口并提供服务
 	e.log.Info("Starting server at " + e.address)
 	go server.ListenAndServe()
-	quit := make(chan os.Signal)
-	signal.Notify(quit, syscall.SIGKILL, syscall.SIGQUIT, syscall.SIGINT, syscall.SIGTERM)
-	<-quit
-	e.registryRemove()
+	//quit := make(chan os.Signal)
+	//signal.Notify(quit, syscall.SIGKILL, syscall.SIGQUIT, syscall.SIGINT, syscall.SIGTERM)
+	//<-quit
+	//e.registryRemove()
 	return nil
 }
 
